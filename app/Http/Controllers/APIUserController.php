@@ -23,24 +23,24 @@ class APIUserController extends Controller
         return UserResource::collection($users);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserStoreRequest $request)
-    {
-        // On crée un nouvel utilisateur
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(UserStoreRequest $request)
+    // {
+    //     // On crée un nouvel utilisateur
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => bcrypt($request->password)
+    //     ]);
 
-        // On retourne les informations du nouvel utilisateur en JSON
-        return response()->json($user, 201);
-    }
+    //     // On retourne les informations du nouvel utilisateur en JSON
+    //     return response()->json($user, 201);
+    // }
 
     /**
      * Display the specified resource.

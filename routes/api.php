@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIUserController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,7 +14,11 @@ use App\Http\Controllers\APIUserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::apiResource("users",APIUserController::class);
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+Route::apiResource("users",APIUserController::class)->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
